@@ -8,14 +8,23 @@ import {
   Body,
   UseInterceptors,
   UploadedFile,
+  HttpStatus,
+  HttpCode,
+  ParseFilePipe,
+  FileTypeValidator,
+  Param,
+  Post,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
-import { updateUserDto } from './dto/user.dto';
+import { updateUserDto, updateUserUploadDto } from './dto/user.dto';
 import { diskStorage } from 'multer';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { fileUploadDto } from 'src/file-upload.dto';
+
+let imageUrl: string = null;
 
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'))
@@ -29,23 +38,75 @@ export class UserController {
     return this.userService.getUserByToken(token, res);
   }
 
-  // Update user's profile
+  @HttpCode(HttpStatus.OK)
   @Put('update-user')
+  updateUserDetail(
+    @Headers('Authorization') token: string,
+    @Body() updateUserDto: updateUserDto,
+    @Res() res: Response,
+  ) {
+    return this.userService.updateUserDetail(token, updateUserDto, res);
+  }
+
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({ description: 'avatar', type: updateUserUploadDto })
   @UseInterceptors(
-    FileInterceptor('file', {
+    FileInterceptor('avatar', {
       storage: diskStorage({
-        destination: process.cwd() + '/public/img',
+        destination: process.cwd() + '/public/avatar',
         filename: (req, file, callback) => {
-          callback(null, new Date().getTime() + file.originalname);
+          imageUrl = new Date().getTime() + '_' + file.originalname;
+          callback(null, imageUrl);
         },
       }),
     }),
   )
-  updateUser(
-    @Headers('token') token,
-    @Body() updateUser: updateUserDto,
-    @UploadedFile() file: Express.Multer.File,
+  @HttpCode(HttpStatus.OK)
+  @Put('update-user-upload')
+  updateUserDetailUpload(
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [new FileTypeValidator({ fileType: 'image/*' })],
+      }),
+    )
+    avatar: Express.Multer.File,
+    @Headers('Authorization') token: string,
+    @Body() updateUserUploadDto: updateUserUploadDto,
+    @Res() res: Response,
   ) {
-    return this.userService.updateUser(token, updateUser, file);
+    return this.userService.updateUserDetailUpload(
+      token,
+      updateUserUploadDto,
+      imageUrl,
+      res,
+    );
+  }
+
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({ description: 'avatar', type: fileUploadDto })
+  @UseInterceptors(
+    FileInterceptor('avatar', {
+      storage: diskStorage({
+        destination: process.cwd() + '/public/avatar',
+        filename: (req, file, callback) => {
+          imageUrl = new Date().getTime() + '_' + file.originalname;
+          callback(null, imageUrl);
+        },
+      }),
+    }),
+  )
+  @HttpCode(HttpStatus.CREATED)
+  @Post('upload-avatar/:user_id')
+  uploadAvatar(
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [new FileTypeValidator({ fileType: 'image/*' })],
+      }),
+    )
+    avatar: Express.Multer.File,
+    @Param('user_id') user_id: string,
+    @Res() res: Response,
+  ) {
+    return this.userService.uploadAvatar(imageUrl, +user_id, res);
   }
 }

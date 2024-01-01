@@ -2,23 +2,29 @@ import {
   Body,
   Controller,
   Delete,
+  FileTypeValidator,
   Get,
   Headers,
   HttpCode,
   HttpStatus,
   Param,
+  ParseFilePipe,
   Post,
+  Query,
   Res,
   UploadedFile,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { ImageService } from './image.service';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
+import { createImageDto } from './dto/image.dto';
+
+let url: string = null;
 
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'))
@@ -37,7 +43,7 @@ export class ImageController {
   // Get image by image_name
   @HttpCode(HttpStatus.OK)
   @Get('get-image-by-name')
-  getImageByName(@Body() image_name: string, @Res() res: Response) {
+  getImageByName(@Query('image_name') image_name: string, @Res() res: Response) {
     return this.imageService.getImageByName(image_name, res);
   }
 
@@ -68,25 +74,34 @@ export class ImageController {
   ) {
     return this.imageService.removeCreatedImage(+image_id, token, res);
   }
-s
+
   // Upload new image
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({ description: 'url', type: createImageDto })
   @UseInterceptors(
-    FileInterceptor('file', {
+    FileInterceptor('url', {
       storage: diskStorage({
         destination: process.cwd() + '/public/img',
         filename: (req, file, callback) => {
-          callback(null, new Date().getTime() + file.originalname);
+          url = new Date().getTime() + '_' + file.originalname;
+          callback(null, url);
         },
       }),
     }),
   )
+  @HttpCode(HttpStatus.CREATED)
   @Post('upload-image')
   uploadImage(
-    @UploadedFile() file: Express.Multer.File,
-    @Body('description') description: string,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [new FileTypeValidator({ fileType: 'image/*' })],
+      }),
+    )
+    file: Express.Multer.File,
+    @Body() createImageDto: createImageDto,
     @Headers('Authorization') token: string,
     @Res() res: Response,
   ) {
-    return this.imageService.uploadImage(file, description, token, res);
+    return this.imageService.uploadImage(createImageDto, url, token, res);
   }
 }

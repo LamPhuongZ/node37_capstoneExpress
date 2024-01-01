@@ -71,11 +71,11 @@ INSERT INTO `tblSaveImage` (`user_id`, `image_id`, `save_date`) VALUES
 
 
 INSERT INTO `tblUser` (`user_id`, `email`, `pass_word`, `full_name`, `age`, `avatar`) VALUES
-(1, 'alice@gmail.com', '1234', 'alice', 20, 'avatar1.png');
+(1, 'alice@gmail.com', '1234', 'alice', 20, 'NULL');
 INSERT INTO `tblUser` (`user_id`, `email`, `pass_word`, `full_name`, `age`, `avatar`) VALUES
-(2, 'yorn@gmail.com', '1234', 'yorn', 25, 'avatar2.png');
+(2, 'yorn@gmail.com', '1234', 'yorn', 25, 'NULL');
 INSERT INTO `tblUser` (`user_id`, `email`, `pass_word`, `full_name`, `age`, `avatar`) VALUES
-(3, 'lam@gmail.com', '1234', 'lam', 25, 'avatar3.png');
+(3, 'lam@gmail.com', '1234', 'lam', 25, 'NULL');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

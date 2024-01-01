@@ -17,13 +17,14 @@ import { Response } from 'express';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.CREATED)
   @Post('/sign-up')
   signUp(@Body() body: createUserDto, @Res() res: Response) {
-    return this.authService.signUp(body, res);
+    const { email, pass_word, full_name, age } = body;
+    return this.authService.signUp(email, pass_word, full_name, age, res); 
   }
 
-  // @HttpCode(HttpStatus.OK)
+  @HttpCode(HttpStatus.OK)
   @Post('/login')
   login(@Body() body: authDto, @Res() res: Response) {
     return this.authService.login(body, res);

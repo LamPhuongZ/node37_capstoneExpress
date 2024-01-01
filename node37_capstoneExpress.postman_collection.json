@@ -1,0 +1,519 @@
+{
+	"info": {
+		"_postman_id": "7b2e90f6-2afb-431d-b326-0d29fc7a6e46",
+		"name": "node37_capstoneExpress",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27807951"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get-user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}user/get-user",
+							"host": [
+								"{{domain}}user"
+							],
+							"path": [
+								"get-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pass_word\": \"1234\",\r\n  \"full_name\": \"op\",\r\n  \"age\": 29\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}user/update-user",
+							"host": [
+								"{{domain}}user"
+							],
+							"path": [
+								"update-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user-upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pass_word ",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "full_name ",
+									"value": "OTP",
+									"type": "text"
+								},
+								{
+									"key": "age ",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/Z/Pictures/Teerak/srchfreen.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}user/update-user-upload",
+							"host": [
+								"{{domain}}user"
+							],
+							"path": [
+								"update-user-upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload-avatar-by-user-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/Z/Pictures/Teerak/srchfreen.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}user/upload-avatar/10",
+							"host": [
+								"{{domain}}user"
+							],
+							"path": [
+								"upload-avatar",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"lam2@gmail.com\",\r\n    \"pass_word\": \"$2b$10$oLBbjDki9Ya/F24SgPJ/qeLyQHr5G5jl41ijhIGD6BriHfxuokY2.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}auth/login",
+							"host": [
+								"{{domain}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"lam3@gmail.com\",\r\n    \"pass_word\": \"1234\",\r\n    \"full_name\": \"lam\",\r\n    \"age\": 26,\r\n    \"avatar\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}auth/sign-up",
+							"host": [
+								"{{domain}}auth"
+							],
+							"path": [
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "get-comments-by-imageId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFsaWNlQGdtYWlsLmNvbSIsInBhc3Nfd29yZCI6IiIsImZ1bGxfbmFtZSI6ImFsaWNlIiwiYWdlIjoyMCwiYXZhdGFyIjoiYXZhdGFyMS5wbmciLCJpYXQiOjE3MDM5NjU5NDMsImV4cCI6MTcwNDA1MjM0M30.CCq9OgZjWUL_h5zh4XcWX6IhRvBcKNva9JkawVoUpZU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}comment/get-comments-by-img-id/1",
+							"host": [
+								"{{domain}}comment"
+							],
+							"path": [
+								"get-comments-by-img-id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save-comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFsaWNlQGdtYWlsLmNvbSIsInBhc3Nfd29yZCI6IiIsImZ1bGxfbmFtZSI6ImFsaWNlIiwiYWdlIjoyMCwiYXZhdGFyIjoiYXZhdGFyMS5wbmciLCJpYXQiOjE3MDM5NjU5NDMsImV4cCI6MTcwNDA1MjM0M30.CCq9OgZjWUL_h5zh4XcWX6IhRvBcKNva9JkawVoUpZU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": 1,\r\n  \"image_id\": 1,\r\n  \"content\": \"good\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}comment/save-comment",
+							"host": [
+								"{{domain}}comment"
+							],
+							"path": [
+								"save-comment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "get-image-list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}image/get-image-list",
+							"host": [
+								"{{domain}}image"
+							],
+							"path": [
+								"get-image-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-image-by-name",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "image_name",
+								"value": "file_name",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}image/get-image-by-name",
+							"host": [
+								"{{domain}}image"
+							],
+							"path": [
+								"get-image-by-name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-info-by-img-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}image/get-info-by-img-id/2",
+							"host": [
+								"{{domain}}image"
+							],
+							"path": [
+								"get-info-by-img-id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-created-image-list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFsaWNlQGdtYWlsLmNvbSIsInBhc3Nfd29yZCI6IiIsImZ1bGxfbmFtZSI6ImFsaWNlIiwiYWdlIjoyMCwiYXZhdGFyIjoiYXZhdGFyMS5wbmciLCJpYXQiOjE3MDM5NjU5NDMsImV4cCI6MTcwNDA1MjM0M30.CCq9OgZjWUL_h5zh4XcWX6IhRvBcKNva9JkawVoUpZU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}image/get-created-image-list",
+							"host": [
+								"{{domain}}image"
+							],
+							"path": [
+								"get-created-image-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFsaWNlQGdtYWlsLmNvbSIsInBhc3Nfd29yZCI6IiIsImZ1bGxfbmFtZSI6ImFsaWNlIiwiYWdlIjoyMCwiYXZhdGFyIjoiYXZhdGFyMS5wbmciLCJpYXQiOjE3MDM5NjU5NDMsImV4cCI6MTcwNDA1MjM0M30.CCq9OgZjWUL_h5zh4XcWX6IhRvBcKNva9JkawVoUpZU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}image/remove-image/3",
+							"host": [
+								"{{domain}}image"
+							],
+							"path": [
+								"remove-image",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload-image",
+					"protocolProfileBehavior": {
+						"followOriginalHttpMethod": false,
+						"strictSSL": false,
+						"followAuthorizationHeader": true,
+						"insecureHTTPParser": false,
+						"disableCookies": false,
+						"maxRedirects": 100
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image_name",
+									"value": "sarocha88",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "nu88",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"type": "file",
+									"src": "/C:/Users/Z/Pictures/Teerak/srchfreen.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}image/upload-image",
+							"host": [
+								"{{domain}}image"
+							],
+							"path": [
+								"upload-image"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Save-Image",
+			"item": []
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "localhost:8080/"
+		}
+	]
+}

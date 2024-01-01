@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { PrismaClient, tblUser } from '@prisma/client';
 import { Response } from 'express';
 import * as fs from 'fs';
+import { createImageDto } from './dto/image.dto';
 
 @Injectable()
 export class ImageService {
@@ -39,7 +40,7 @@ export class ImageService {
       let imageByName = await this.prisma.tblImage.findMany({
         where: {
           image_name: {
-            contains: image_name['image_name'],
+            contains: image_name,
           },
         },
       });
@@ -171,21 +172,32 @@ export class ImageService {
   }
 
   // Upload new image
-  async uploadImage(file: Express.Multer.File, description: string, token: string, res: Response) {
+  async uploadImage(
+    createImageDto: createImageDto,
+    url: string,
+    token: string,
+    res: Response,
+  ) {
+    const { image_name, description } = createImageDto;
+
     try {
       // lấy phần chuỗi sau Bearer trừ luôn khoảng cách (SOF)
       let payload: tblUser | any = this.jwtService.decode(token.split(' ')[1]);
 
-      await this.prisma.tblImage.create({
+      let dataUpload = await this.prisma.tblImage.create({
         data: {
-          image_name: file.filename,
-          url: file.path,
-          description,
+          image_name: createImageDto.image_name,
+          url: url,
+          description: createImageDto.description,
           user_id: payload.user_id,
         },
       });
 
-      return 'Create image successfully';
+      return res.status(HttpStatus.OK).json({
+        statusCode: 200,
+        message: 'Create image successfully',
+        dataUpload,
+      });
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
