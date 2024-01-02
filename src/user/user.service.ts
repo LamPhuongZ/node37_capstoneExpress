@@ -83,54 +83,54 @@ export class UserService {
     }
   }
 
-  async updateUserDetailUpload(
-    token: string,
-    updateUserUploadDto: updateUserUploadDto,
-    avatarUrl: string,
-    res: Response,
-  ) {
-    try {
-      // lấy phần chuỗi sau Bearer trừ luôn khoảng cách (SOF)
-      let payload: tblUser | any = this.jwtService.decode(token.split(' ')[1]);
+  // async updateUserDetailUpload(
+  //   token: string,
+  //   updateUserUploadDto: updateUserUploadDto,
+  //   avatarUrl: string,
+  //   res: Response,
+  // ) {
+  //   try {
+  //     // lấy phần chuỗi sau Bearer trừ luôn khoảng cách (SOF)
+  //     let payload: tblUser | any = this.jwtService.decode(token.split(' ')[1]);
 
-      let user = await this.prisma.tblUser.findFirst({
-        where: {
-          user_id: payload.user_id,
-        },
-      });
+  //     let user = await this.prisma.tblUser.findFirst({
+  //       where: {
+  //         user_id: payload.user_id,
+  //       },
+  //     });
 
-      if (user) {
-        if (user.avatar) {
-          //delete old file in server
-          fs.unlinkSync(process.cwd() + '\\public\\avatar\\' + user.avatar);
-        }
-        let dataUpdate = await this.prisma.tblUser.update({
-          where: {
-            user_id: payload.user_id,
-          },
-          data: {
-            ...updateUserUploadDto,
-            pass_word: bcrypt.hashSync(updateUserUploadDto.pass_word, 10),
-            age: +updateUserUploadDto.age,
-            avatar: avatarUrl,
-          },
-        });
+  //     if (user) {
+  //       if (user.avatar) {
+  //         //delete old file in server
+  //         fs.unlinkSync(process.cwd() + '\\public\\avatar\\' + user.avatar);
+  //       }
+  //       let dataUpdate = await this.prisma.tblUser.update({
+  //         where: {
+  //           user_id: payload.user_id,
+  //         },
+  //         data: {
+  //           ...updateUserUploadDto,
+  //           pass_word: bcrypt.hashSync(updateUserUploadDto.pass_word, 10),
+  //           age: +updateUserUploadDto.age,
+  //           avatar: avatarUrl,
+  //         },
+  //       });
 
-        return res.status(HttpStatus.OK).json({
-          statusCode: 200,
-          message: 'Update user upload successfully',
-          dataUpdate,
-        });
-      } else {
-        return res.status(HttpStatus.NOT_FOUND).json({
-          statusCode: 404,
-          message: 'User ID does not exist',
-        });
-      }
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
+  //       return res.status(HttpStatus.OK).json({
+  //         statusCode: 200,
+  //         message: 'Update user upload successfully',
+  //         dataUpdate,
+  //       });
+  //     } else {
+  //       return res.status(HttpStatus.NOT_FOUND).json({
+  //         statusCode: 404,
+  //         message: 'User ID does not exist',
+  //       });
+  //     }
+  //   } catch (error) {
+  //     throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+  //   }
+  // }
 
   async uploadAvatar(imageUrl: string, user_id: number, res: Response) {
     try {

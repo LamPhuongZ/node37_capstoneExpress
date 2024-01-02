@@ -37,94 +37,6 @@
 					"response": []
 				},
 				{
-					"name": "update-user",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"pass_word\": \"1234\",\r\n  \"full_name\": \"op\",\r\n  \"age\": 29\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{domain}}user/update-user",
-							"host": [
-								"{{domain}}user"
-							],
-							"path": [
-								"update-user"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update-user-upload",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6ImxhbTJAZ21haWwuY29tIiwicGFzc193b3JkIjoiIiwiZnVsbF9uYW1lIjoibGFtIiwiYWdlIjoyNiwiYXZhdGFyIjoiaHR0cDovL2RlcmdpcGFyay5vcmcudHIvYXNzZXRzL2FwcC9pbWFnZXMvYnVkZHlfc2FtcGxlLnBuZyIsImlhdCI6MTcwNDE0NjQyMCwiZXhwIjoxNzA0MjMyODIwfQ.qpi_NWJvNhjgxyM74ho1jawUqZi5fTA9_RaNGyqD5u0",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "pass_word ",
-									"value": "1234",
-									"type": "text"
-								},
-								{
-									"key": "full_name ",
-									"value": "OTP",
-									"type": "text"
-								},
-								{
-									"key": "age ",
-									"value": "13",
-									"type": "text"
-								},
-								{
-									"key": "avatar",
-									"type": "file",
-									"src": "/C:/Users/Z/Pictures/Teerak/srchfreen.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{domain}}user/update-user-upload",
-							"host": [
-								"{{domain}}user"
-							],
-							"path": [
-								"update-user-upload"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "upload-avatar-by-user-id",
 					"request": {
 						"auth": {
@@ -157,6 +69,42 @@
 							"path": [
 								"upload-avatar",
 								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZW1haWwiOiJsYW0zQGdtYWlsLmNvbSIsInBhc3Nfd29yZCI6IiIsImZ1bGxfbmFtZSI6ImxhbSIsImFnZSI6MjYsImF2YXRhciI6bnVsbCwiaWF0IjoxNzA0MTcxMzA0LCJleHAiOjE3MDQyNTc3MDR9.VHKpXYo491zM9LtlcjN3eRxk5yDg0GQp6K4de2YRmPc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pass_word\": \"1234\",\r\n  \"full_name\": \"OTP88\",\r\n  \"age\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}user/update-user",
+							"host": [
+								"{{domain}}user"
+							],
+							"path": [
+								"update-user"
 							]
 						}
 					},
@@ -507,7 +455,63 @@
 		},
 		{
 			"name": "Save-Image",
-			"item": []
+			"item": [
+				{
+					"name": "check-image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZW1haWwiOiJsYW0zQGdtYWlsLmNvbSIsInBhc3Nfd29yZCI6IiIsImZ1bGxfbmFtZSI6ImxhbSIsImFnZSI6MjYsImF2YXRhciI6bnVsbCwiaWF0IjoxNzA0MTcxMzA0LCJleHAiOjE3MDQyNTc3MDR9.VHKpXYo491zM9LtlcjN3eRxk5yDg0GQp6K4de2YRmPc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}save-image/check-image/14",
+							"host": [
+								"{{domain}}save-image"
+							],
+							"path": [
+								"check-image",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-saved-image-list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZW1haWwiOiJsYW0zQGdtYWlsLmNvbSIsInBhc3Nfd29yZCI6IiIsImZ1bGxfbmFtZSI6ImxhbSIsImFnZSI6MjYsImF2YXRhciI6bnVsbCwiaWF0IjoxNzA0MTcxMzA0LCJleHAiOjE3MDQyNTc3MDR9.VHKpXYo491zM9LtlcjN3eRxk5yDg0GQp6K4de2YRmPc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}save-image/get-saved-image-list",
+							"host": [
+								"{{domain}}save-image"
+							],
+							"path": [
+								"get-saved-image-list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"variable": [

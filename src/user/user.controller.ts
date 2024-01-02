@@ -38,6 +38,8 @@ export class UserController {
     return this.userService.getUserByToken(token, res);
   }
 
+
+
   @HttpCode(HttpStatus.OK)
   @Put('update-user')
   updateUserDetail(
@@ -48,39 +50,40 @@ export class UserController {
     return this.userService.updateUserDetail(token, updateUserDto, res);
   }
 
-  @ApiConsumes('multipart/form-data')
-  @ApiBody({ description: 'avatar', type: updateUserUploadDto })
-  @UseInterceptors(
-    FileInterceptor('avatar', {
-      storage: diskStorage({
-        destination: process.cwd() + '/public/avatar',
-        filename: (req, file, callback) => {
-          imageUrl = new Date().getTime() + '_' + file.originalname;
-          callback(null, imageUrl);
-        },
-      }),
-    }),
-  )
-  @HttpCode(HttpStatus.OK)
-  @Put('update-user-upload')
-  updateUserDetailUpload(
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [new FileTypeValidator({ fileType: 'image/*' })],
-      }),
-    )
-    avatar: Express.Multer.File,
-    @Headers('Authorization') token: string,
-    @Body() updateUserUploadDto: updateUserUploadDto,
-    @Res() res: Response,
-  ) {
-    return this.userService.updateUserDetailUpload(
-      token,
-      updateUserUploadDto,
-      imageUrl,
-      res,
-    );
-  }
+  // Chưa tìm được cách xử lý nên tạm ẩn đi
+  // @ApiConsumes('multipart/form-data')
+  // @ApiBody({ description: 'avatar', type: updateUserUploadDto })
+  // @UseInterceptors(
+  //   FileInterceptor('avatar', {
+  //     storage: diskStorage({
+  //       destination: process.cwd() + '/public/avatar',
+  //       filename: (req, file, callback) => {
+  //         imageUrl = new Date().getTime() + '_' + file.originalname;
+  //         callback(null, imageUrl);
+  //       },
+  //     }),
+  //   }),
+  // )
+  // @HttpCode(HttpStatus.OK)
+  // @Put('update-user-upload')
+  // updateUserDetailUpload(
+  //   @UploadedFile(
+  //     new ParseFilePipe({
+  //       validators: [new FileTypeValidator({ fileType: 'image/*' })],
+  //     }),
+  //   )
+  //   avatar: Express.Multer.File,
+  //   @Headers('Authorization') token: string,
+  //   @Body() updateUserUploadDto: updateUserUploadDto,
+  //   @Res() res: Response,
+  // ) {
+  //   return this.userService.updateUserDetailUpload(
+  //     token,
+  //     updateUserUploadDto,
+  //     imageUrl,
+  //     res,
+  //   );
+  // }
 
   @ApiConsumes('multipart/form-data')
   @ApiBody({ description: 'avatar', type: fileUploadDto })
